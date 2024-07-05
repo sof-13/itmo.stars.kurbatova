@@ -1,0 +1,4 @@
+[{"imageUrl":"/images/1.png", "answers": ["24","25","35"], "correct": "24"}, {"imageUrl":"/images/2.png", "answers": ["5.5","5","6"], "correct": "5"}, {"imageUrl":"/images/3.png", "answers": ["4","5","6"], "correct": "5"},
+  {"imageUrl":"/images/4.png", "answers": ["49","98","89"], "correct": "98"}, {"imageUrl":"/images/5.png", "answers": ["5","7","1"], "correct": "5"}, {"imageUrl":"/images/6.png", "answers": ["10","9","18"], "correct": "18"},
+  {"imageUrl":"/images/7.png", "answers": ["0.9","0.8","0.7"], "correct": "0.9"}, {"imageUrl":"/images/8.png", "answers": ["28","15","20"], "correct": "28"}, {"imageUrl":"/images/9.png", "answers": ["14","13","12"], "correct": "13"},
+  {"imageUrl":"/images/10.png", "answers": ["54","60","70"], "correct": "54"}]

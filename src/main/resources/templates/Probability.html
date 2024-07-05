@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Теория вероятностей</title>
+    <style>
+        #questionContainer, #answersContainer {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        input[type="radio"], button {
+            font-size: 30px;
+            padding: 30px 30px;
+            margin: 0 20px;
+        }
+
+        #container {
+            min-height: 400px;
+        }
+
+        body {
+            background-image: url('images/baza2.png');
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 450px;
+        }
+
+        #resultImage {
+            max-width: 250px;
+            max-height: 250px;
+        }
+
+        #resultText {
+            font-size: 30px;
+        }
+
+        #resultContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+<h1 style="text-align: center; margin-top: 0px; font-size: 50px;"><em>ЗАДАНИЯ 4, 5</em></h1>
+<div id="container">
+    <div id="questionContainer">
+        <img id="questionImage">
+    </div>
+    <div id="answersContainer"></div>
+</div>
+<div id="resultContainer">
+    <div id="resultText"></div>
+    <img id="resultImage">
+</div>
+<div class="button-container">
+    <button onclick="checkAnswer()" style="background-color: lightpink; border-radius: 15px;" id="checkAnswerButton">ПРОВЕРИТЬ</button>
+    <button onclick="finishQuiz()" style="background-color: lightgreen; border-radius: 15px;" id="finishQuizButton">ЗАВЕРШИТЬ</button>
+    <button onclick="nextQuestion()" style="background-color: beige; border-radius: 15px; display: none;" id="nextQuestionButton">ДАЛЕЕ</button>
+</div>
+
+<script>
+    let questions;
+            let currentQuestionIndex = 0;
+            let correctAnswersCount = 0;
+
+            fetch("/questionsprobability")
+                .then(response => response.json())
+                .then(data => {
+                    questions = data;
+                    showQuestion();
+                });
+
+            function showQuestion() {
+                let question = questions[currentQuestionIndex];
+                let imageQuestion = document.getElementById("questionImage");
+                imageQuestion.src = question.imageUrl;
+
+                let answersContainer = document.getElementById("answersContainer");
+                answersContainer.innerHTML = "";
+                question.answers.forEach(answer => {
+                    answersContainer.innerHTML += "<input type='radio' name='answer' value='" + answer + "'>" + answer + "<br>";
+                });
+            }
+
+
+            function checkAnswer() {
+                let selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
+                let correctAnswer = questions[currentQuestionIndex].correct;
+
+                switchResultVisibility(true, selectedAnswer === correctAnswer);
+                switchButtonVisibility(false);
+            }
+
+            function nextQuestion() {
+                currentQuestionIndex++;
+
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion();
+               }
+
+               else {finishQuiz()}
+
+               switchResultVisibility(false);
+               switchButtonVisibility(true);
+            }
+
+            function finishQuiz() {
+                alert("Количество правильных ответов: " + correctAnswersCount + ". \n" + "Вы владеете блоком на " +  correctAnswersCount*10 + "%!");
+                window.location.href = "http://localhost:8080"
+            }
+
+
+            function switchButtonVisibility(switcher) {
+                let checkAnswerButton = document.getElementById("checkAnswerButton");
+                let finishQuizButton = document.getElementById("finishQuizButton");
+                let nextQuestionButton = document.getElementById("nextQuestionButton");
+
+                if (switcher) {
+                    checkAnswerButton.style.display = "block";
+                    finishQuizButton.style.display = "block";
+                    nextQuestionButton.style.display = "none";
+                } else {
+                    checkAnswerButton.style.display = "none";
+                    finishQuizButton.style.display = "none";
+                    nextQuestionButton.style.display = "block";
+                }
+            }
+
+            function switchResultVisibility(visible, correct) {
+                let correctAnswer = questions[currentQuestionIndex].correct;
+                let resultContainer = document.getElementById("resultContainer");
+
+                if (visible) {
+                    let resultText = document.getElementById("resultText");
+                    let resultImage = document.getElementById("resultImage");
+
+                    resultContainer.style.display="flex";
+
+                    if (correct) {
+                        resultText.innerText = "ПРАВИЛЬНО!";
+                        resultImage.src = "images/good.png";
+                        correctAnswersCount++;
+
+                    } else {
+                        resultText.innerText = "НЕПРАВИЛЬНО. ПРАВИЛЬНЫЙ ОТВЕТ: " + correctAnswer;
+                        resultImage.src = "images/bad.png";
+                    }
+                } else {
+                    resultContainer.style.display = "none";
+                }
+            }
+</script>
+</body>
+</html>

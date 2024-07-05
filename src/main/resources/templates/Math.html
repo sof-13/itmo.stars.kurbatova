@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задания для подготовки к ЕГЭ</title>
+    <style>
+        .container{
+            text-align: center;
+        }
+
+        .block {
+            display: inline-block;
+            width: 300px;
+            height: 200px;
+            margin: 20px;
+            border: 5px solid black;
+            line-height: 175px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 22px;
+            background-color: white;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+
+        body {
+           background-image: url('images/math.webp');
+           background-size: cover;
+       }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; background-color: lightblue; font-size: 40px;"><em>Задания для подготовки к ЕГЭ</em></h1>
+    <div class="center">
+        <img th:src="@{|images/home.png|}" width="900" height="300">
+    </div>
+    <div class="container">
+        <a href="geometry"><div
+class="block">ГЕОМЕТРИЯ</div></a>
+        <a href="probability"><div
+class="block">ТЕОРИЯ ВЕРОЯТНОСТЕЙ</div></a>
+        <a href="computations"><div
+class="block">ВЫЧИСЛЕНИЯ</div></a>
+        <a href="derivative"><div
+class="block">ГРАФИКИ И ПРОИЗВОДНАЯ</div></a>
+        <a href="wordproblems"><div
+class="block">ТЕКСТОВЫЕ ЗАДАЧИ</div></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+[{"imageUrl":"/images/11.png", "answers": ["0.5","0.4","0.3"], "correct": "0.4"}, {"imageUrl":"/images/12.png", "answers": ["0.17","0.83","0.0083"], "correct": "0.17"},
+{"imageUrl":"/images/13.png", "answers": ["0.4","0.84","0.04"], "correct": "0.4"}, {"imageUrl":"/images/14.png", "answers": ["0.997","0.9","0.09"], "correct": "0.997"}, {"imageUrl":"/images/15.png", "answers": ["0.4","0.75","0.5"], "correct": "0.75"},
+{"imageUrl":"/images/16.png", "answers": ["0.4","0.5","0.3"], "correct": "0.3"}, {"imageUrl":"/images/17.png", "answers": ["0.6","0.75","0.08"], "correct": "0.6"}, {"imageUrl":"/images/18.png", "answers": ["0.43","0.25","0.3"], "correct": "0.25"},
+{"imageUrl":"/images/19.png", "answers": ["0.26","0.28","0.24"], "correct": "0.26"}, {"imageUrl":"/images/20.png", "answers": ["0.05","0.55","0.505"], "correct": "0.05"}]
